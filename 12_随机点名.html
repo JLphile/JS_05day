@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>随机点名</title>
+    <style>
+      .container {
+        margin: 20px auto;
+        display: flex;
+        width: 300px;
+        height: 200px;
+        background-color: pink;
+        flex-direction: column;
+      }
+      h3 {
+        margin: 5px auto;
+      }
+      .footer {
+        display: flex;
+        margin: 70px auto 10px;
+        justify-content: space-around;
+      }
+      .footer button {
+        margin: 5px 50px;
+      }
+      .qs {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3>随机点名</h3>
+      <p>
+        获奖名字是:
+        <span class="qs"></span>
+      </p>
+      <div class="footer">
+        <button class="start">开始</button>
+        <button class="end">结束</button>
+      </div>
+    </div>
+
+    <script>
+      const arr = ['马超', '黄忠', '赵云', '关羽', '张飞']
+
+      const start = document.querySelector('.start')
+      const end = document.querySelector('.end')
+      const qs = document.querySelector('.qs')
+      end.disabled = true
+      let timeId = 0
+      let random = -1
+      start.addEventListener('click', () => {
+        start.disabled = true
+        end.disabled = false
+        timeId = setInterval(() => {
+          random = Math.floor(Math.random() * arr.length)
+          qs.innerHTML = arr[random]
+        }, 100)
+      })
+
+      end.addEventListener('click', () => {
+        clearInterval(timeId)
+        end.disabled = true
+        start.disabled = false
+        arr.splice(random, 1)
+        if (arr.length === 0) {
+          qs.innerHTML = '抽奖完毕'
+          start.disabled = true
+        }
+      })
+    </script>
+  </body>
+</html>
