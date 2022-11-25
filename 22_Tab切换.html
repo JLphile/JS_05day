@@ -67,11 +67,11 @@
         </ul>
       </div>
       <div class="tab-content">
-        <div class="item active"><img src="./images/course01.jpg" alt="" /></div>
-        <div class="item"><img src="./images/course02.jpg" alt="" /></div>
-        <div class="item"><img src="./images/course03.jpg" alt="" /></div>
-        <div class="item"><img src="./images/course04.jpg" alt="" /></div>
-        <div class="item"><img src="./images/course05.jpg" alt="" /></div>
+        <div class="item active"><img src="./images/image01.jpg" alt="" /></div>
+        <div class="item"><img src="./images/image02.jpg" alt="" /></div>
+        <div class="item"><img src="./images/image03.jpg" alt="" /></div>
+        <div class="item"><img src="./images/image04.jpg" alt="" /></div>
+        <div class="item"><img src="./images/image05.jpg" alt="" /></div>
       </div>
     </div>
     <script>
@@ -80,6 +80,8 @@
         as[i].addEventListener('mouseenter', function () {
           document.querySelector('.tab-nav .active').classList.remove('active')
           this.classList.add('active')
+          document.querySelector('.tab-content .active').classList.remove('active')
+          document.querySelector(`.tab-content .item:nth-child(${i + 1})`).classList.add('active')
         })
       }
     </script>
