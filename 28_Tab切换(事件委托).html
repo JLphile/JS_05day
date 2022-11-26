@@ -82,15 +82,30 @@
       </div>
     </div>
     <script>
+      const ul = document.querySelector('.tab-nav ul')
+      const items=document.querySelectorAll('.tab-content .item')
       const as = document.querySelectorAll('.tab-nav a')
+      // A 元素绑定自定义属性
       for (let i = 0; i < as.length; i++) {
-        as[i].addEventListener('mouseenter', function () {
-          document.querySelector('.tab-nav .active').classList.remove('active')
-          this.classList.add('active')
-          document.querySelector('.tab-content .active').classList.remove('active')
-          document.querySelector(`.tab-content .item:nth-child(${i + 1})`).classList.add('active')
-        })
+        let myname = document.createAttribute('data-id')
+        myname.nodeValue = i
+        as[i].attributes.setNamedItem(myname)
       }
+      ul.addEventListener('click', function (e) {
+        // console.log(e.target);
+        // console.log(e.target.tagName);
+        if (e.target.tagName === 'A') {
+          // console.log('a标签被点击了');
+          document.querySelector('.tab-nav .active').classList.remove('active')
+          e.target.classList.add('active')
+
+          // console.log(e.target.dataset.id)
+          const i = +e.target.dataset.id
+          document.querySelector('.tab-content .active').classList.remove('active')
+          // document.querySelector(`.tab-content .item:nth-child(${i + 1})`).classList.add('active')
+          items[i].classList.add('active')//等价写法
+        }
+      })
     </script>
   </body>
 </html>

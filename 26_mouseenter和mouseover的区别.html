@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mouseenter和mouseover的区别</title>
+    <style>
+      .father {
+        width: 300px;
+        height: 300px;
+        background-color: pink;
+      }
+      .son {
+        width: 100px;
+        height: 100px;
+        background-color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="son"></div>
+    </div>
+    <script>
+      const father = document.querySelector('.father')
+      const son = document.querySelector('.son')
+      //-------------------------------------------------
+      // father.addEventListener('mouseover', function () {
+      //   console.log('mouseover')
+      // })
+      // father.addEventListener('mouseout', function () {
+      //   console.log('mouseout')
+      // })
+      //----------------------------------------------
+      // son.addEventListener('mouseover', function () {
+      //   console.log('mouseover')
+      // })
+      // son.addEventListener('mouseout', function () {
+      //   console.log('mouseout')
+      // })
+      //--------------mouseover和mouseout有冒泡效果------------------------------
+      // father.addEventListener('mouseover', function () {
+      //   console.log('mouseover')
+      // })
+      // father.addEventListener('mouseout', function () {
+      //   console.log('mouseout')
+      // })
+      //--------------mouseenter和mouseleave无冒泡效果，推荐使用-------------------------------------
+      father.addEventListener('mouseenter', function () {
+        console.log('mouseenter')
+      })
+      father.addEventListener('mouseleave', function () {
+        console.log('mouseleave')
+      })
+
+    </script>
+  </body>
+</html>
