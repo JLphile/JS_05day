@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./lib/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 3000px;
+      }
+
+      .aside {
+        position: fixed;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .item {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        padding: 0 10px;
+        cursor: pointer;
+      }
+
+      .active {
+        background-color: red;
+        color: #fff;
+      }
+
+      .content {
+        width: 660px;
+        margin: 400px auto;
+      }
+
+      .neirong {
+        height: 300px;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      .content1 {
+        background-color: red;
+      }
+
+      .content2 {
+        background-color: blue;
+      }
+
+      .content3 {
+        background-color: orange;
+      }
+
+      .content4 {
+        background-color: yellowgreen;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="aside" style="display: none">
+      <div class="item active">男装/女装</div>
+      <div class="item">儿童服装/游乐园</div>
+      <div class="item">电子产品</div>
+      <div class="item">电影/美食</div>
+    </div>
+
+    <div class="content">
+      <div class="neirong content1">男装/女装</div>
+      <div class="neirong content2">儿童服装/游乐园</div>
+      <div class="neirong content3">电子产品</div>
+      <div class="neirong content4">电影/美食</div>
+    </div>
+
+    <script>
+      // 1.获取元素
+      let items = document.querySelectorAll('.item')
+
+      // 内容盒子获取
+      let neirongs = document.querySelectorAll('.neirong')
+
+      // 2.左侧aside 模块点击谁，谁高亮
+      for (let i = 0; i < items.length; i++) {
+        items[i].addEventListener('click', function () {
+          //找到上一个active类
+          document.querySelector('.aside .active').classList.remove('active')
+          //点击谁谁添加类
+          this.classList.add('active')
+          // 3.右侧内容耿穗走动，让页面滚动到对应的offsetTop值
+          // console.log(neirongs[i].offsetTop);
+          document.documentElement.scrollTop = neirongs[i].offsetTop
+          // neirongs[i].getBoundingClientRect().top = 0;
+          // console.log(neirongs[i].getBoundingClientRect().top);
+        })
+      }
+
+      //滚动页面
+      window.addEventListener('scroll', function (e) {
+        // console.log(this.pageYOffset);
+        // console.log(neirongs[neirongs.length-1].getBoundingClientRect().top);
+
+        //显示导航栏     getBoundingClientRect().top 元素上边距离页面上边的距离
+        if (
+          this.pageYOffset >= neirongs[0].getBoundingClientRect().top &&
+          this.pageYOffset >= -neirongs[0].offsetHeight
+        ) {
+          items[0].parentNode.style.display = 'block'
+          // console.log(this.pageYOffset);
+        }
+        //隐藏导航栏
+        if (
+          this.pageYOffset < neirongs[0].getBoundingClientRect().top ||
+          neirongs[neirongs.length - 1].getBoundingClientRect().top <= -neirongs[0].offsetHeight
+        ) {
+          items[0].parentNode.style.display = 'none'
+        }
+
+        for (let i = 0; i < neirongs.length; i++) {
+          //页面滚动到相应位置，电梯导航按钮添加active类
+          if (
+            neirongs[i].getBoundingClientRect().top < 0 &&
+            neirongs[i].getBoundingClientRect().top > -neirongs[0].offsetHeight
+          ) {
+            document.querySelector('.aside .active').classList.remove('active')
+
+            items[i].classList.add('active')
+          }
+        }
+      })
+
+      
+    </script>
+  </body>
+</html>
