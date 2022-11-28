@@ -7,18 +7,33 @@
     <title>offset</title>
     <style>
       div {
+        position: relative;
         width: 200px;
         height: 200px;
         background-color: pink;
         margin: 100px;
       }
+      P {
+        /* position: absolute; */
+        width: 100px;
+        height: 100px;
+        background-color: purple;
+        margin: 0 auto;
+        border: 5px solid;
+        padding: 8px;
+      }
     </style>
   </head>
   <body>
-    <div></div>
+    <div>
+      <p></p>
+    </div>
     <script>
       const div = document.querySelector('div')
-      console.log(div.offsetLeft)
+      const p = document.querySelector('p')
+      // console.log('offsetLeft', div.offsetLeft)
+      // console.log('offsetTop', div.offsetTop)
+      console.log('p.offsetLeft',p.offsetLeft);
     </script>
   </body>
 </html>
