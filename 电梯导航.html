@@ -210,8 +210,7 @@
       </div>
     </div>
   </div>
-<!-- --------------电梯导航对接开始---------------------------------------------- -->
-<!-- --------------电梯导航对接开始---------------------------------------------- -->
+<!-- ==============电梯导航对接开始============================================== -->
 
   <!-- 新鲜好物 -->
   <div class="xtx_goods_new xtx_panel">
@@ -1144,8 +1143,8 @@
     </div>
   </div>
 
-<!-- --------------电梯导航对接结束------------------------------------------------ -->
-<!-- --------------电梯导航对接结束------------------------------------------------ -->
+<!-- ==============电梯导航对接结束============================================== -->
+
 
   <!-- 公共底部 -->
   <div class="xtx_footer clearfix">
@@ -1217,8 +1216,19 @@
       <li><a href="javascript:;" id="backTop"><i class="sprites"></i>顶部</a></li>
     </ul>
   </div>
-  <script src="./js/index.js"></script>">
-  <!-- <script src="./js/index02.js"></script> -->
+  <!-- <script src="./js/index.js"></script>"> -->
+  <script>
+    const list=document.querySelector('.xtx-elevator-list')
+    list.addEventListener('click',function (e) {
+      if(e.target.tagname==="A"){
+        const old=document.querySelector('.xtx-elevator-list .active')
+        if(old) old.classList.remove('active')
+        e.target.classList.add('active')
+        const top= document.querySelector(`.xtx_goods_${e.target.dataset.name}`).offsetTop
+        document.documentElement.scrollTop=top
+      }
+    })
+  </script>
 </body>
 
 </html>
