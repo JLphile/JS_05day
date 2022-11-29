@@ -1,6 +1,6 @@
 
 
-# webAPIs-day02测试题
+# WebAPIs-day02测试题
 
 1. 关于js中的事件，下列说法错误的是？（A）
 
